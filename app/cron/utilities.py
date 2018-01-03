@@ -20,10 +20,15 @@ def fetch_data(url):
   # TODO: Log this as well
 
   r = requests.get(QRY_URL)
+  res = r.json()
 
-  print(r.json())
+
   # TODO: check for response error (better than 200 OK)
+  if "error" in res["response"]:
+    print(res["response"]["error"]["type"])
+    # TODO: LOG THIS and return error
   
+  # TODO: refactor this to use above check
   if r.status_code == 200:
     try:
       res = r.json()["current_observation"]

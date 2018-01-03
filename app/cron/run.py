@@ -48,5 +48,4 @@ for station in stations:
     logging.warning("ERROR")
 
   logging.info(("Fetching data for '{0}' with station id '{1}'").format(station[1], station[3]))
-  # logging.info(("Wunderground API responded with: {0}").format(utilities.fetch_data(station))) # Potentially too verbose
-  print(res)
+  # print(res)
