@@ -20,10 +20,19 @@ def fetch_data(url):
   # TODO: Log this as well
 
   r = requests.get(QRY_URL)
+
+  print(r.json())
+  # TODO: check for response error (better than 200 OK)
   
   if r.status_code == 200:
-    res = r.json()["current_observation"]
-    return res
+    try:
+      res = r.json()["current_observation"]
+      return res
+    except Exception as e:
+      print(e)
+      return 0
+
+
 
 def does_directory_exist(directory):
     """

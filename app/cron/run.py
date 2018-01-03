@@ -30,11 +30,10 @@ connection = pymysql.connect(
 try:
   with connection.cursor() as cursor:
     cursor.execute("SELECT * FROM weather_stations")
-    stations = cursor.fetchall()
+    stations = cursor.fetchall() # returns tuples
 
     # If there are no weather stations
     if len(stations) == 0:
-      # TODO: log this to log file as well
       logging.info("No stations exist! Exiting..")
       print("No stations exist! Exiting gracefully..")
       sys.exit(0)
@@ -44,6 +43,9 @@ finally:
 
 for station in stations:
   res = utilities.fetch_data(station)
+
+  if res == 0:
+    logging.warning("ERROR")
 
   logging.info(("Fetching data for '{0}' with station id '{1}'").format(station[1], station[3]))
   # logging.info(("Wunderground API responded with: {0}").format(utilities.fetch_data(station))) # Potentially too verbose
