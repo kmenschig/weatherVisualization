@@ -1,0 +1,9 @@
+# Python virtual environment
+/env
+
+# Python specifics files
+__pycache__/
+*.py[cod]
+
+# All log files
+*.log
